@@ -1,16 +1,16 @@
 
-create table if not exist activitytype (
+create table if not exists activitytype (
 	activitytypeid integer primary key,
 	name varchar not null,
 	sysname varchar not null
 );
 
-create table if not exist area (
+create table if not exists area (
 	areaid integer primary key,
 	name varchar not null
 );
 
-create table if not exist activity (
+create table if not exists activity (
 	activityid integer primary key,
 	activitytypeid integer references activitytype (activitytypeid) not null,
 	code varchar not null,
@@ -18,19 +18,19 @@ create table if not exist activity (
 	parentid integer references activity (activityid)
 );
 
-create table if not exist contract (
+create table if not exists contract (
 	contractid integer primary key references activity (activityid),
 	areaid integer references area (areaid)
 );
 
-create table if not exist program (
+create table if not exists program (
 	programid integer primary key references activity (activityid),
 	indexnum integer,
 	yearstart integer,
 	yearfinish integer
 );
 
-create table point (
+create table if not exists point (
 	pointid integer primary key references activity (activityid),
 	plandate date not null,
 	factdate date
